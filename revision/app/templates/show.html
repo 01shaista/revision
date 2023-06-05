@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <title>DATA list</title>
+  </head>
+  <body>
+    <!-- As a heading -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/">Navbar</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link "  aria-current="page" href="/">Data Insert</a>
+            </li>
+          <li class="nav-item">
+           <a class="nav-link active "  aria-current="page" href="/show">Data List</a>
+         </li>
+          </ul>
+          
+        </div>
+      </div>
+    </nav>
+   
+<div class="container my-3">
+  <h4 class="text-center alert alert-info py-3">List of data</h4>
+  {% if tasks %}
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+  
+        <th scope="col">Address</th>
+        <th scope="col">Updated by</th>
+        <th scope="col">Updated on</th>
+        <th scope="col">Edit</th>
+        <th scope="col">Delete</th>
+
+      </tr>
+    </thead>
+    <tbody>
+        {% comment %} Run a loop here and iterate all the tasks {% endcomment %}
+     {% for cat in tasks %}
+     <tr>
+       <th scope="row">{{forloop.counter}}</th>
+       <td>{{cat.name}}</td>
+       <td>{{cat.address}}</td>
+       <td>{{cat.updated_by}}</td>  
+       <td>{{cat.updated_on}}</td> 
+       <td><a href="/edit/{{cat.student_id}}" class="btn btn-sm btn-warning"/>Edit</td>
+       <td><a href="/delete/{{cat.student_id}}" class="btn btn-sm btn-danger"/>Delete</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% else %}
+  <h4 class="text-center alert alert-warning">No Record</h4>
+{% endif %}
+</div>    
+  </body>
+</html>
